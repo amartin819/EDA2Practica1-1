@@ -5,6 +5,7 @@
 package material.tree.linkedtree;
 
 import junit.framework.TestCase;
+import material.tree.LCSRTree;
 import material.tree.LinkedTree;
 import material.tree.Position;
 
@@ -14,7 +15,7 @@ import material.tree.Position;
  */
 public class LinkedTreeTest extends TestCase {
 
-	private LinkedTree<String> tree = new LinkedTree<>();
+	private LCSRTree<String> tree = new LCSRTree<>();
 
 	public void setTree() {
 

@@ -16,14 +16,14 @@ public class LCSRTree<E> implements GenericTree<E> {
         private LCSRNode<T> parent;
         private LCSRNode<T> son;
         private LCSRNode<T> brother;
-        private LCSRNode<T> myTree;
+        private LCSRTree<T> myTree;
         
         /**
          * Main constructor
          * 
          */
         
-        public LCSRNode(T e, LCSRNode<T> p, LCSRNode<T> s, LCSRNode<T> b,LCSRNode<T> tree){
+        public LCSRNode(T e, LCSRNode<T> p, LCSRNode<T> s, LCSRNode<T> b,LCSRTree<T> tree){
             this.element=e;
             this.parent=p;
             this.son=s;
@@ -64,11 +64,11 @@ public class LCSRTree<E> implements GenericTree<E> {
             this.brother = brother;
         }
 
-        public LCSRNode<T> getMyTree() {
+        public LCSRTree<T> getMyTree() {
             return myTree;
         }
 
-        public void setMyTree(LCSRNode<T> myTree) {
+        public void setMyTree(LCSRTree<T> myTree) {
             this.myTree = myTree;
         }
     }  
@@ -238,7 +238,7 @@ public class LCSRTree<E> implements GenericTree<E> {
         if(!isEmpty())
             throw new RuntimeException("Tree already has a root");
         size = 1;
-        root = new LCSRNode<E> (e,null,null,null, (LCSRNode<E>) e);
+        root = new LCSRNode<E> (e,null,null,null, this);
         
         return root;
     }
@@ -263,7 +263,7 @@ public class LCSRTree<E> implements GenericTree<E> {
      */
     public Position<E> add(E element, Position<E> p) {
         LCSRNode<E> node = checkPosition(p);
-        LCSRNode<E> newNode = new LCSRNode(element, node, null, null, null);
+        LCSRNode<E> newNode = new LCSRNode(element, node, null, null, this);
         
         if(!hasChild(p)){
             node.setSon(newNode);
@@ -290,7 +290,33 @@ public class LCSRTree<E> implements GenericTree<E> {
      * @throws InvalidPositionException
      */
     public Position<E> add(E element, Position<E> p, final int n) {
-        throw new RuntimeException("Tienes que borrar esto e implementar el método");
+        LCSRNode<E> parent = checkPosition(p);
+        LCSRNode<E> newNode = new LCSRNode(element, parent, null, null, this);
+        LCSRNode<E> backup;
+        int aux =1;
+        
+        if(n > this.size)
+            throw new RuntimeException("the element cant be inserted");
+        
+        if(!hasChild(p))
+            parent.setSon(newNode);
+        else{
+            if(parent.getSon().getBrother() != null){
+                LCSRNode<E> son = parent.getSon();
+
+                while(hasBro(son) && aux<n){
+                    son = son.getBrother();
+                    aux++;
+                }
+                backup = son.getBrother();
+                son.setBrother(newNode);
+                newNode.setBrother(backup);
+            }else{
+                parent.getSon().setBrother(newNode);
+            }
+        }
+        size++;
+        return newNode;
     }
         
     
