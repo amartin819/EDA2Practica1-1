@@ -15,6 +15,7 @@ import material.tree.Position;
  */
 public class LinkedTreeTest extends TestCase {
 
+	//private LinkedTree<String> tree = new LinkedTree<>();
 	private LCSRTree<String> tree = new LCSRTree<>();
 
 	public void setTree() {

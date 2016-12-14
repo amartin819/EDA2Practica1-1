@@ -340,15 +340,16 @@ public class LinkedTree<E> implements GenericTree<E> {
         TreeNode<E> destino = checkPosition(pDest);
         
         if(origen.parent != null){
-            origen.setParent(destino);
-            /*recorrer la lista de hijos del padre de origen para borrar el hijo origen*/
+             /*recorrer la lista de hijos del padre de origen para borrar el hijo origen
+                de la lista de hijos y DESPUES poner ORIGEN como hijo de destino*/
             List<E> children = (List<E>) origen.parent.getChildren();
             for(E p: children){
                 if(p==origen)
                     p=null;
             }
+            origen.setParent(destino);
         }else{
-            throw new RuntimeException("Root cant be origen");
+            throw new RuntimeException("pDest cant be descendent of pOrig");
         }
     }            
 }

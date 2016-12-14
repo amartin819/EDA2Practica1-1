@@ -250,8 +250,8 @@ public class LCSRTree<E> implements GenericTree<E> {
         LCSRNode<E> node1 = checkPosition(p1);
         LCSRNode<E> node2 = checkPosition(p2);
         E temp = p2.getElement();
-        node1.setElement(temp);
         node2.setElement(p1.getElement());
+        node1.setElement(temp);
     }
 
     /**
