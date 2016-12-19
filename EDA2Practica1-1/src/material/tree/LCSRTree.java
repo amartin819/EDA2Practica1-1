@@ -355,7 +355,7 @@ public class LCSRTree<E> implements GenericTree<E> {
     
     public boolean hasChild(Position<E> p){
         LCSRNode<E> node = checkPosition(p);
-        return (node.getBrother() !=null);
+        return (node.getSon() !=null);
     }
     
     public boolean hasBro(Position<E> p){
