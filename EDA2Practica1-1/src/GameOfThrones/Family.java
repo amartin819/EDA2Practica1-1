@@ -5,6 +5,8 @@
  */
 package GameOfThrones;
 
+import material.tree.LinkedTree;
+
 /**
  *
  * @author jvelez
@@ -14,6 +16,7 @@ class Family {
     
     enum TypeOfRelation {parent,child,brother,cousin,uncle,grandparent,nephew,family,none};
     
+    LinkedTree<Member> family = new LinkedTree<>();
     /**
      * 
      * @return the family name.

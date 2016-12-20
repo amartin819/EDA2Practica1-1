@@ -5,7 +5,9 @@
  */
 package GameOfThrones;
 
+import java.util.ArrayList;
 import java.util.List;
+import material.tree.LinkedTree;
 
 /**
  *
@@ -13,13 +15,17 @@ import java.util.List;
  */
 public class GameOfThrones {
     
+    List<Family> familyList = new ArrayList<>();
+    
     /**
      * Returns the families to which belongs a person.
      * @param memberName
      * @return 
      */
     public List<Family> getFamily(String memberName) {
-        throw new RuntimeException("Tienes que borrar esto e implementar el método");        
+        List<Family> family = new ArrayList<>();
+        
+        return family;
     }
     
     /**
