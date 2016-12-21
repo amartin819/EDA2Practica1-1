@@ -6,6 +6,8 @@
 package GameOfThrones;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import material.tree.LinkedTree;
 
@@ -15,7 +17,7 @@ import material.tree.LinkedTree;
  */
 public class GameOfThrones {
     
-    List<Family> familyList = new ArrayList<>();
+    LinkedList<Family> familyList = new LinkedList<>();
     
     /**
      * Returns the families to which belongs a person.
@@ -24,7 +26,18 @@ public class GameOfThrones {
      */
     public List<Family> getFamily(String memberName) {
         List<Family> family = new ArrayList<>();
+        Iterator<List<Family>> itlist = (Iterator<List<Family>>) this.familyList;
+        Iterator<Family> itfam = (Iterator<Family>) this.familyList.element();
+        int i=0;
         
+        while(itlist.hasNext()){
+            while(itfam.hasNext()){
+                if(memberName == itfam.next().name){
+                    family.add(itlist.next().get(i));
+                    i++;
+                }
+            }
+        }
         return family;
     }
     
@@ -34,7 +47,10 @@ public class GameOfThrones {
      * @return 
      */
     Family addFamily(String familyName) {
-        throw new RuntimeException("Tienes que borrar esto e implementar el método");        
+        Family newFamily = null;
+        newFamily.setName(familyName);
+        this.familyList.add(newFamily);
+        return newFamily;
     }
 
     /**

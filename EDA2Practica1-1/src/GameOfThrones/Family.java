@@ -5,7 +5,9 @@
  */
 package GameOfThrones;
 
+import java.util.List;
 import material.tree.LinkedTree;
+import material.tree.Position;
 
 /**
  *
@@ -17,20 +19,34 @@ class Family {
     enum TypeOfRelation {parent,child,brother,cousin,uncle,grandparent,nephew,family,none};
     
     LinkedTree<Member> family = new LinkedTree<>();
+    String name;
+
+    public LinkedTree<Member> getFamily() {
+        return family;
+    }
+
+    public void setFamily(LinkedTree<Member> family) {
+        this.family = family;
+    }
+    
+    public void setName(String n) {
+        this.name = n;
+    }
+    
     /**
      * 
      * @return the family name.
      */
     public String getName() {
-        throw new RuntimeException("Tienes que borrar esto e implementar el método");        
+        return this.name;
     }
     
     /**
      * 
      * @return the family tree.
      */
-    public String showTree() {
-        throw new RuntimeException("Tienes que borrar esto e implementar el método");
+    public String showTree() {/////////////////que tiene que mostrar aqui, yo creo que el arbol pero pone String
+        return this.getName();
     }
 
     /**
@@ -40,7 +56,9 @@ class Family {
      * @return the new member
      */
     void addFirstMember(Member member) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        family.addRoot(member);
+        member.setFamily(this.name);
+        member.position = (List<Position>) family.root();
     }
 
     /**
@@ -50,7 +68,10 @@ class Family {
      * @return the new member
      */
     public Member addMember(Member member, Member parent) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	
+        family.add(member, (Position<Member>) parent);
+        member.setFamily(this.name);
+        member.position = 
     }
     
     /**
@@ -70,4 +91,5 @@ class Family {
     public TypeOfRelation getRelation(Member member1, Member member2) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.                
     }
+    
 }
