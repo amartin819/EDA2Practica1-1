@@ -15,7 +15,7 @@ import material.tree.Position;
  *
  * @author jvelez
  */
-class Member {
+class Member extends Family{
 
     String name;
     List<Family> familylist = new LinkedList<>();
@@ -24,6 +24,8 @@ class Member {
     
     Member(String fullName) {
         this.name = fullName;
+        List<Family> familylist = new LinkedList<>();
+        List<Position> position;
     }
     
     public List<Position> getPosition() {
@@ -51,7 +53,6 @@ class Member {
     }
     
     public void setFamily(String f) {
-        Family newfamily = new Family();
-        newfamily.name = f;
+        this.familyName = f;
     }
 }

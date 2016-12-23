@@ -18,19 +18,19 @@ class Family {
     
     enum TypeOfRelation {parent,child,brother,cousin,uncle,grandparent,nephew,family,none};
     
-    LinkedTree<Member> family = new LinkedTree<>();
-    String name;
+    String familyName;
+    LinkedTree<Member> familyTree = new LinkedTree<>();
 
-    public LinkedTree<Member> getFamily() {
-        return family;
+    public LinkedTree<Member> getFamilyTree() {
+        return familyTree;
     }
 
-    public void setFamily(LinkedTree<Member> family) {
-        this.family = family;
+    public void setFamilyTree(LinkedTree<Member> family) {
+        this.familyTree = family;
     }
     
     public void setName(String n) {
-        this.name = n;
+        this.familyName = n;
     }
     
     /**
@@ -38,7 +38,7 @@ class Family {
      * @return the family name.
      */
     public String getName() {
-        return this.name;
+        return this.familyName;
     }
     
     /**
@@ -56,9 +56,9 @@ class Family {
      * @return the new member
      */
     void addFirstMember(Member member) {
-        family.addRoot(member);
-        member.setFamily(this.name);
-        member.position = (List<Position>) family.root();
+        familyTree.addRoot(member);
+        member.setFamily(this.familyName);
+        member.position = (List<Position>) familyTree.root();
     }
 
     /**
@@ -69,8 +69,8 @@ class Family {
      */
     public Member addMember(Member member, Member parent) {
 	
-        family.add(member, (Position<Member>) parent);
-        member.setFamily(this.name);
+        familyTree.add(member, (Position<Member>) parent.);
+        member.setFamily(this.familyName);
         member.position = 
     }
     

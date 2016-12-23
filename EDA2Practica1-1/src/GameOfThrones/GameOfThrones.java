@@ -10,12 +10,13 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import material.tree.LinkedTree;
+import material.tree.Position;
 
 /**
  *
  * @author jvelez
  */
-public class GameOfThrones {
+public class GameOfThrones extends Family{
     
     LinkedList<Family> familyList = new LinkedList<>();
     
@@ -27,14 +28,15 @@ public class GameOfThrones {
     public List<Family> getFamily(String memberName) {
         List<Family> family = new ArrayList<>();
         Iterator<List<Family>> itlist = (Iterator<List<Family>>) this.familyList;
-        Iterator<Family> itfam = (Iterator<Family>) this.familyList.element();
-        int i=0;
+        Iterator<Position<Member>> itfam = this.familyTree.iterator();
         
         while(itlist.hasNext()){
             while(itfam.hasNext()){
-                if(memberName == itfam.next().name){
-                    family.add(itlist.next().get(i));
-                    i++;
+                String aux = itfam.next().getElement().getName();
+                //if(memberName.equals(itfam.next().getElement().getName())){ // este if o el de abajo justo suprimiendo la linea de arriba
+                if(memberName.equals(aux)){
+                    family.add((Family) itlist.next());
+                    break;
                 }
             }
         }
@@ -47,7 +49,7 @@ public class GameOfThrones {
      * @return 
      */
     Family addFamily(String familyName) {
-        Family newFamily = null;
+        Family newFamily = new Family();
         newFamily.setName(familyName);
         this.familyList.add(newFamily);
         return newFamily;
