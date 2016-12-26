@@ -5,6 +5,7 @@
  */
 package GameOfThrones;
 
+import java.util.Iterator;
 import java.util.List;
 import material.tree.LinkedTree;
 import material.tree.Position;
@@ -50,8 +51,24 @@ class Family {
      * 
      * @return the family tree.
      */
-    public String showTree() {/////////////////que tiene que mostrar aqui, yo creo que el arbol pero pone String
-        return null;
+    public String showTree() {
+                
+        String family =this.getName();
+        Iterator<Position<Member>> it = this.familyTree.iterator();
+        
+        Member root = (Member) this.familyTree.root();
+        List<Member> pos = null;
+        pos.add(root);
+        
+        if()
+        
+        
+        while(it.hasNext()){
+            Member aux = it.next().getElement();
+            family = family + "+ " + aux.getName();
+        }
+        
+        return family;
     }
 
     /**

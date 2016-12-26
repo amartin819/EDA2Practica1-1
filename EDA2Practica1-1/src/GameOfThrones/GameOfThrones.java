@@ -18,14 +18,21 @@ import material.tree.Position;
  */
 public class GameOfThrones{
     
-    LinkedList<Family> familyList = new LinkedList<>();
+    LinkedList<Family> familyList; 
+
+    public GameOfThrones(){
+        this.familyList= new LinkedList<>();
+    }
     
     /**
      * Returns the families to which belongs a person.
      * @param memberName
      * @return 
      */
-    public List<Family> getFamily(String memberName) {
+    
+    
+    
+   /* public List<Family> getFamily(String memberName) {
         List<Family> family = new ArrayList<>();
         Iterator<List<Family>> itlist = (Iterator<List<Family>>) this.familyList;
         Iterator<Position<Member>> itfam = this.familyTree.iterator();
@@ -41,7 +48,7 @@ public class GameOfThrones{
             }
         }
         return family;
-    }
+    }*/
     
     /**
      * Add a family to the object.
@@ -49,9 +56,10 @@ public class GameOfThrones{
      * @return 
      */
     Family addFamily(String familyName) {
-        Family newFamily = new Family();
-        newFamily.setName(familyName);
+        Family newFamily = new Family(familyName);
+        
         this.familyList.add(newFamily);
+        
         return newFamily;
     }
 
