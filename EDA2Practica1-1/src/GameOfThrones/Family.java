@@ -19,8 +19,13 @@ class Family {
     enum TypeOfRelation {parent,child,brother,cousin,uncle,grandparent,nephew,family,none};
     
     String familyName;
-    LinkedTree<Member> familyTree = new LinkedTree<>();
+    LinkedTree<Member> familyTree;
 
+    public Family(String familyName) {
+        this.familyName = familyName;
+         this.familyTree = new LinkedTree<>();
+    }
+    
     public LinkedTree<Member> getFamilyTree() {
         return familyTree;
     }
@@ -46,7 +51,7 @@ class Family {
      * @return the family tree.
      */
     public String showTree() {/////////////////que tiene que mostrar aqui, yo creo que el arbol pero pone String
-        return this.getName();
+        return null;
     }
 
     /**
@@ -56,9 +61,7 @@ class Family {
      * @return the new member
      */
     void addFirstMember(Member member) {
-        familyTree.addRoot(member);
-        member.setFamily(this.familyName);
-        member.position = (List<Position>) familyTree.root();
+        this.familyTree.addRoot(member);
     }
 
     /**
@@ -68,10 +71,19 @@ class Family {
      * @return the new member
      */
     public Member addMember(Member member, Member parent) {
-	
-        familyTree.add(member, (Position<Member>) parent.);
-        member.setFamily(this.familyName);
-        member.position = 
+	boolean esta=false;
+        for(Position<Member> elemento : familyTree){
+            String nombre =  elemento.getElement().getName();
+            if (nombre.equals(parent.getName()) ){
+                member.setFamily(this);
+                this.familyTree.add(member, elemento);
+                esta=true;
+            }
+        }
+        if (esta)
+            return member;
+        else
+            return null;
     }
     
     /**

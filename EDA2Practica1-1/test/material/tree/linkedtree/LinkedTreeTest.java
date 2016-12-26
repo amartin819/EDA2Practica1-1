@@ -278,4 +278,5 @@ public class LinkedTreeTest extends TestCase {
 		}
 		assertEquals(salida, "XBYDEZGWIJKL");
 	}
+    
 }

@@ -16,7 +16,7 @@ import material.tree.Position;
  *
  * @author jvelez
  */
-public class GameOfThrones extends Family{
+public class GameOfThrones{
     
     LinkedList<Family> familyList = new LinkedList<>();
     

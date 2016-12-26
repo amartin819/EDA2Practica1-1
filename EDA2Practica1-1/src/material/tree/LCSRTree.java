@@ -336,8 +336,29 @@ public class LCSRTree<E> implements GenericTree<E> {
                 it.next();
                 cont++;
             }
-            size = size -cont;
-            
+            size = size - cont;
+            LCSRNode<E> parent = node.getParent();
+            //System.out.println("El padre es " + parent.getElement() + " quiero borrar " + cont);
+            LCSRNode<E> child = parent.getSon();
+            LCSRNode<E> listaNueva = null;
+            LCSRNode<E> actual = null;
+            while(hasBro(child)){
+                if (child != node){
+                    if (listaNueva==null){
+                        listaNueva = child;
+                        actual = child;
+                    }
+                    else{
+                        actual.setBrother(child);
+                        actual = actual.getBrother();
+                    }
+                }
+                child = child.getBrother();
+            }       
+            actual.setBrother(null);
+            parent.setSon(listaNueva);
+            StringBuilder s = new StringBuilder();
+            /*
             LCSRNode<E> parent = node.getParent();
             if(node==parent.getSon())
                 parent.setSon(null);
@@ -347,6 +368,7 @@ public class LCSRTree<E> implements GenericTree<E> {
                     child.getBrother();
                 child.setBrother(null);
             }
+            */
         }else{
             this.root=null;
             size=0;
