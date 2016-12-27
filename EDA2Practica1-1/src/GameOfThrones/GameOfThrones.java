@@ -18,10 +18,10 @@ import material.tree.Position;
  */
 public class GameOfThrones{
     
-    LinkedList<Family> familyList; 
+    List<Family> familyList; 
 
     public GameOfThrones(){
-        this.familyList= new LinkedList<>();
+        this.familyList= new ArrayList<Family>();
     }
     
     /**
@@ -32,23 +32,17 @@ public class GameOfThrones{
     
     
     
-   /* public List<Family> getFamily(String memberName) {
-        List<Family> family = new ArrayList<>();
-        Iterator<List<Family>> itlist = (Iterator<List<Family>>) this.familyList;
-        Iterator<Position<Member>> itfam = this.familyTree.iterator();
-        
-        while(itlist.hasNext()){
-            while(itfam.hasNext()){
-                String aux = itfam.next().getElement().getName();
-                //if(memberName.equals(itfam.next().getElement().getName())){ // este if o el de abajo justo suprimiendo la linea de arriba
-                if(memberName.equals(aux)){
-                    family.add((Family) itlist.next());
-                    break;
+    public List<Family> getFamily(String memberName) {
+        List<Family> salida = new ArrayList<>();
+        for(Family family : this.familyList){
+            for(Position<Member> p : family.getFamilyTree()){
+                if (p.getElement().getName().equals(memberName)){
+                    salida.add(p.getElement().getFamily());
                 }
             }
         }
-        return family;
-    }*/
+        return salida;
+    }
     
     /**
      * Add a family to the object.
@@ -57,9 +51,7 @@ public class GameOfThrones{
      */
     Family addFamily(String familyName) {
         Family newFamily = new Family(familyName);
-        
         this.familyList.add(newFamily);
-        
         return newFamily;
     }
 
